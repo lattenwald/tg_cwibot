@@ -24,7 +24,3 @@ $ bin/tg_cwibot console       # run with elixir console
 $ bin/tg_cwibot foreground    # run in foreground
 $ bin/tg_cwibot daemon        # run in background
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/tg_cwibot](https://hexdocs.pm/tg_cwibot).
