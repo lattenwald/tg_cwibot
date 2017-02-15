@@ -40,7 +40,7 @@ defmodule TgCwibot.Handler do
       ^endpoint ->
         conn
         |> Plug.Conn.fetch_query_params
-        |> inlineQuery
+        |> query
         |> respond
 
       other ->
@@ -50,6 +50,17 @@ defmodule TgCwibot.Handler do
   end
 
   match _, do: Plug.Conn.send_resp(conn, 404, "oops")
+
+  defp query(
+    conn = %{body_params: %{"inline_query" => _}}
+  ) do
+    inlineQuery(conn)
+  end
+
+  defp query(conn) do
+    Logger.debug("Ignoring message #{inspect conn.body_params}")
+    conn
+  end
 
   defp inlineQuery(conn) do
     %{"inline_query" => %{"id" => id, "query" => query}} =
