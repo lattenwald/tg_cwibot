@@ -53,6 +53,7 @@ defmodule TgCwibot.Client do
     host = Application.get_env(:tg_cwibot, :host)
     endpoint = Application.get_env(:tg_cwibot, :endpoint)
     url = "#{host}/#{endpoint}"
+    Logger.info("Setting webhook endpoint to #{url}")
     %Tesla.Env{status: 200} = setWebhook(url)
     :ok
   end
