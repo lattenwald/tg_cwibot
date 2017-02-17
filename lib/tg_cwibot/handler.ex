@@ -4,11 +4,106 @@ defmodule TgCwibot.Handler do
 
   require Logger
 
-  @commands %{
-    attack: "⚔ Атака", defend: "🛡 Защита",
-    white: "🇨🇾", red: "🇮🇲", blue: "🇪🇺", black: "🇬🇵",
-    yellow: "🇻🇦", forest: "🌲Лесной форт", mountain: "⛰Горный форт"
-  }
+  @commands [
+    %{
+      default: false,
+      id: "1",
+      strings: ["attack", "атака"],
+      title: "⚔ Атака",
+      command: "⚔ Атака"
+    },
+    %{
+      default: false,
+      id: "2",
+      strings: ["defend", "защита"],
+      title: "🛡 Защита",
+      command: "🛡 Защита"
+    },
+    %{
+      default: true,
+      id: "3",
+      strings: ["white", "белый"],
+      title: "🇨🇾 Белый замок",
+      command: "🇨🇾"
+    },
+    %{
+      default: true,
+      id: "4",
+      strings: ["замок", "red", "красный"],
+      title: "🇮🇲 Красный замок",
+      command: "🇮🇲"
+    },
+    %{
+      default: true,
+      id: "5",
+      strings: ["замок", "blue", "голубой", "синий"],
+      title: "🇪🇺 Синий замок",
+      command: "🇪🇺"
+    },
+    %{
+      default: true,
+      id: "6",
+      strings: ["замок", "black", "чёрный", "черный"],
+      title: "🇬🇵 Чёрный замок",
+      command: "🇬🇵"
+    },
+    %{
+      default: true,
+      id: "7",
+      strings: ["замок", "yellow", "жёлтый", "желтый"],
+      title: "🇻🇦 Жёлтый замок",
+      command: "🇻🇦"
+    },
+    %{
+      default: true,
+      id: "8",
+      strings: ["форт", "forest fort", "лесной форт"],
+      title: "🌲Лесной форт",
+      command: "🌲Лесной форт"
+    },
+    %{
+      default: true,
+      id: "9",
+      strings: ["форт", "mountain fort", "горный форт"],
+      title: "⛰Горный форт",
+      command: "⛰Горный форт"
+    },
+    %{
+      default: false,
+      id: "10",
+      strings: ["квест", "лес"],
+      title: "🌲Лес",
+      command: "🌲Лес"
+    },
+    %{
+      default: false,
+      id: "11",
+      strings: ["квест", "караван"],
+      title: "🐫ГРАБИТЬ КОРОВАНЫ",
+      command: "🐫ГРАБИТЬ КОРОВАНЫ"
+    },
+    %{
+      default: false,
+      id: "12",
+      strings: ["квест", "пещера"],
+      title: "🕸Пещера",
+      command: "🕸Пещера"
+    },
+    %{
+      default: false,
+      id: "13",
+      strings: ["лавка", "снаряжение"],
+      title: "Снаряжение",
+      command: "Снаряжение"
+    },
+    %{
+      default: false,
+      id: "14",
+      strings: ["лавка"],
+      title: "🏚Лавка",
+      command: "🏚Лавка"
+    }
+  ]
 
   plug Plug.Logger
   plug Plug.Parsers, parsers: [:json], json_decoder: Poison
@@ -65,6 +160,7 @@ defmodule TgCwibot.Handler do
   defp inlineQuery(conn) do
     %{"inline_query" => %{"id" => id, "query" => query}} =
       conn.body_params
+    Logger.debug("query: #{query}")
     result = %{"inline_query_id" => id,
                "results" => results(query)}
     answerInlineQuery(result)
@@ -76,14 +172,35 @@ defmodule TgCwibot.Handler do
     |> Plug.Conn.send_resp(200, "")
   end
 
-  defp results(_query) do
-    Map.values(@commands)
-    |> Stream.zip(1 .. 100)
-    |> Enum.map(fn {f, idx} ->
+  defp results("") do
+    @commands
+    |> Stream.filter(fn f -> f.default end)
+    |> formatResults
+  end
+
+  defp results(".") do
+    @commands
+    |> formatResults
+  end
+
+  defp results(query) do
+    lquery = String.downcase(query)
+
+    @commands
+    |> Stream.filter(fn f ->
+      f.strings
+      |> Enum.any?(&String.starts_with?(&1, lquery))
+    end)
+    |> formatResults
+  end
+
+  defp formatResults(results) do
+    results
+    |> Enum.map(fn f ->
       %{"type" => "article",
-        "id" => "#{idx}",
-        "title" => f,
-        "input_message_content" => %{"message_text" => f}}
+        "id" => f.id,
+        "title" => f.title,
+        "input_message_content" => %{"message_text" => f.command}}
     end)
   end
 

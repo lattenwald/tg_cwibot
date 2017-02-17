@@ -9,7 +9,6 @@ defmodule TgCwibot.Client do
   adapter Tesla.Adapter.Hackney
 
   def client(token) do
-    Logger.warn "#{token}"
     Tesla.build_client [
       {Tesla.Middleware.BaseUrl, "#{@api_base}#{token}"},
       {Tesla.Middleware.Logger, nil},
