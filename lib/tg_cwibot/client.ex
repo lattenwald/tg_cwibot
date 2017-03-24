@@ -14,7 +14,6 @@ defmodule TgCwibot.Client do
       {Tesla.Middleware.Logger, nil},
       {Tesla.Middleware.EncodeJson, nil},
     ]
-    |> IO.inspect
   end
 
   def answerInlineQuery(c, result) do

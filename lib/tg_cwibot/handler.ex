@@ -22,84 +22,84 @@ defmodule TgCwibot.Handler do
     %{
       default: true,
       id: "3",
-      strings: ["white", "белый"],
+      strings: ["castle", "замок", "white", "белый"],
       title: "🇨🇾 Белый замок",
       command: "🇨🇾"
     },
     %{
       default: true,
       id: "4",
-      strings: ["замок", "red", "красный"],
+      strings: ["castle", "замок", "red", "красный"],
       title: "🇮🇲 Красный замок",
       command: "🇮🇲"
     },
     %{
       default: true,
       id: "5",
-      strings: ["замок", "blue", "голубой", "синий"],
+      strings: ["castle", "замок", "blue", "голубой", "синий"],
       title: "🇪🇺 Синий замок",
       command: "🇪🇺"
     },
     %{
       default: true,
       id: "6",
-      strings: ["замок", "black", "чёрный", "черный"],
+      strings: ["castle", "замок", "black", "чёрный", "черный"],
       title: "🇬🇵 Чёрный замок",
       command: "🇬🇵"
     },
     %{
       default: true,
       id: "7",
-      strings: ["замок", "yellow", "жёлтый", "желтый"],
+      strings: ["castle", "замок", "yellow", "жёлтый", "желтый"],
       title: "🇻🇦 Жёлтый замок",
       command: "🇻🇦"
     },
     %{
       default: true,
       id: "8",
-      strings: ["форт", "forest fort", "лесной форт"],
+      strings: ["fort", "форт", "forest fort", "лесной форт"],
       title: "🌲Лесной форт",
       command: "🌲Лесной форт"
     },
     %{
       default: true,
       id: "9",
-      strings: ["форт", "mountain fort", "горный форт"],
+      strings: ["fort", "форт", "mountain fort", "горный форт"],
       title: "⛰Горный форт",
       command: "⛰Горный форт"
     },
     %{
       default: false,
       id: "10",
-      strings: ["квест", "лес"],
+      strings: ["quest", "квест", "лес", "forest"],
       title: "🌲Лес",
       command: "🌲Лес"
     },
     %{
       default: false,
       id: "11",
-      strings: ["квест", "караван"],
+      strings: ["quest", "квест", "caravan", "караван"],
       title: "🐫ГРАБИТЬ КОРОВАНЫ",
       command: "🐫ГРАБИТЬ КОРОВАНЫ"
     },
     %{
       default: false,
       id: "12",
-      strings: ["квест", "пещера"],
+      strings: ["quest", "квест", "cave", "пещера"],
       title: "🕸Пещера",
       command: "🕸Пещера"
     },
     %{
       default: false,
       id: "13",
-      strings: ["лавка", "снаряжение"],
+      strings: ["shop", "лавка", "equipment", "снаряжение"],
       title: "Снаряжение",
       command: "Снаряжение"
     },
     %{
       default: false,
       id: "14",
-      strings: ["лавка"],
+      strings: ["shop", "лавка"],
       title: "🏚Лавка",
       command: "🏚Лавка"
     }
@@ -199,7 +199,10 @@ defmodule TgCwibot.Handler do
     |> Enum.map(fn f ->
       %{"type" => "article",
         "id" => f.id,
-        "title" => f.title,
+        "title" => " " <> f.title,
+        "hide_url" => true,
+        "thumb_width" => 0,
+        "thumb_height" => 0,
         "input_message_content" => %{"message_text" => f.command}}
     end)
   end
