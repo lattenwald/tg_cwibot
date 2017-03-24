@@ -32,7 +32,8 @@ defmodule TgCwibot.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:distillery, "~> 1.1"},
+      {:edeliver, "~> 1.4"},
+      {:distillery, "~> 1.2"},
       {:tesla, "~> 0.6.0"},
       {:cowboy, "~> 1.1"},
       {:hackney, "~> 1.6"},

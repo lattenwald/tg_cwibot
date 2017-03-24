@@ -21,5 +21,6 @@ erl_crash.dump
 
 *.beam
 
+/config/secret.exs
 /config/prod.exs
 /config/dev.exs

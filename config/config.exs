@@ -14,7 +14,7 @@ config :tg_cwibot,
 # stuff according to your bot configuration
 
 try do
-  import_config "#{Mix.env}.exs"
+  import_config "secret.exs"
 catch
   _, _ -> :missing
 end
