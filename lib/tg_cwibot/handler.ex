@@ -102,7 +102,28 @@ defmodule TgCwibot.Handler do
       strings: ["shop", "лавка"],
       title: "🏚Лавка",
       command: "🏚Лавка"
-    }
+    },
+    %{
+      default: false,
+      id: "15",
+      strings: ["arena", "арена"],
+      title: "📯Арена",
+      command: "📯Арена"
+    },
+    %{
+      default: true,
+      id: "16",
+      strings: ["щит", "shield"],
+      title: "Мифриловый щит",
+      command: "/on_216"
+    },
+    %{
+      default: true,
+      id: "17",
+      strings: ["knife", "кинжал"],
+      title: "Кинжал",
+      command: "/on_114"
+    },
   ]
 
   plug Plug.Logger

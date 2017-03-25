@@ -24,3 +24,5 @@ erl_crash.dump
 /config/secret.exs
 /config/prod.exs
 /config/dev.exs
+/.deliver/releases
+*#*
