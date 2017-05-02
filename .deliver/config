@@ -6,7 +6,12 @@ BUILD_AT="/tmp/edeliver/tg_cwibot/builds"
 
 STAGING_HOSTS="ub"
 STAGING_USER="erl"
-DELIVER_TO="/home/erl"
+
+DELIVER_TO="/home/$STAGING_USER"
+
+PRODUCTION_HOSTS="ub"
+PRODUCTION_USER="erl"
+DELIVER_TO="/home/$PRODUCTION_USER"
 
 pre_erlang_get_and_update_deps() {
   local _prod_secret_path="/home/erlbuild/secrets/tg_cwibot.secret.exs"

@@ -57,69 +57,83 @@ defmodule TgCwibot.Handler do
     %{
       default: true,
       id: "8",
+      strings: ["castle", "замок", "green", "mint", "зелёный", "зеленый", "мятный"],
+      title: "🇲🇴 Мятный замок",
+      command: "🇲🇴"
+    },
+    %{
+      default: true,
+      id: "9",
+      strings: ["castle", "замок", "orange", "twilight", "сумрачный", "сумеречный", "оранжевый"],
+      title: "🇰🇮 Сумрачный замок",
+      command: "🇰🇮"
+    },
+    %{
+      default: true,
+      id: "10",
       strings: ["fort", "форт", "forest fort", "лесной форт"],
       title: "🌲Лесной форт",
       command: "🌲Лесной форт"
     },
     %{
       default: true,
-      id: "9",
+      id: "11",
       strings: ["fort", "форт", "mountain fort", "горный форт"],
       title: "⛰Горный форт",
       command: "⛰Горный форт"
     },
     %{
       default: false,
-      id: "10",
+      id: "12",
       strings: ["quest", "квест", "лес", "forest"],
       title: "🌲Лес",
       command: "🌲Лес"
     },
     %{
       default: false,
-      id: "11",
+      id: "13",
       strings: ["quest", "квест", "caravan", "караван"],
       title: "🐫ГРАБИТЬ КОРОВАНЫ",
       command: "🐫ГРАБИТЬ КОРОВАНЫ"
     },
     %{
       default: false,
-      id: "12",
+      id: "14",
       strings: ["quest", "квест", "cave", "пещера"],
       title: "🕸Пещера",
       command: "🕸Пещера"
     },
     %{
       default: false,
-      id: "13",
+      id: "15",
       strings: ["shop", "лавка", "equipment", "снаряжение"],
       title: "Снаряжение",
       command: "Снаряжение"
     },
     %{
       default: false,
-      id: "14",
+      id: "16",
       strings: ["shop", "лавка"],
       title: "🏚Лавка",
       command: "🏚Лавка"
     },
     %{
       default: false,
-      id: "15",
+      id: "17",
       strings: ["arena", "арена"],
       title: "📯Арена",
       command: "📯Арена"
     },
     %{
       default: true,
-      id: "16",
+      id: "18",
       strings: ["щит", "shield"],
       title: "Мифриловый щит",
       command: "/on_216"
     },
     %{
       default: true,
-      id: "17",
+      id: "19",
       strings: ["knife", "кинжал"],
       title: "Кинжал",
       command: "/on_114"

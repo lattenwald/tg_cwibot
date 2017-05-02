@@ -3,7 +3,7 @@ defmodule TgCwibot.Mixfile do
 
   def project do
     [app: :tg_cwibot,
-     version: "0.1.1",
+     version: "0.1.2",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -16,7 +16,7 @@ defmodule TgCwibot.Mixfile do
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :edeliver, :runtime_tools],
       mod: {TgCwibot, []}
     ]
   end
