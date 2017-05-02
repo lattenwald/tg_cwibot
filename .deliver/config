@@ -1,5 +1,7 @@
 APP="tg_cwibot"
 
+AUTO_VERSION="git-branch-unless-master+build-date+git-revision"
+
 BUILD_HOST="ub"
 BUILD_USER="erlbuild"
 BUILD_AT="/tmp/edeliver/tg_cwibot/builds"
