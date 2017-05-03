@@ -138,6 +138,13 @@ defmodule TgCwibot.Handler do
       title: "Кинжал",
       command: "/on_114"
     },
+    %{
+      default: false,
+      id: "20",
+      strings: ["биржа", "market"],
+      title: "⚖️Биржа",
+      command: "⚖️Биржа"
+    }
   ]
 
   plug Plug.Logger
