@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 APP="tg_cwibot"
 
 AUTO_VERSION="git-branch-unless-master+build-date+git-revision"
@@ -10,8 +12,7 @@ RELEASE_DIR="$BUILD_AT/_build/$TARGET_MIX_ENV/rel/$APP"
 
 STAGING_HOSTS="ub"
 STAGING_USER="erl"
-
-DELIVER_TO="/home/$STAGING_USER"
+TEST_AT="/home/$STAGING_USER/edeliver_staging/$APP"
 
 PRODUCTION_HOSTS="ub"
 PRODUCTION_USER="erl"

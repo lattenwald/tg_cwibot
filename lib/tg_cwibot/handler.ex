@@ -142,8 +142,8 @@ defmodule TgCwibot.Handler do
       default: false,
       id: "20",
       strings: ["биржа", "market"],
-      title: "⚖️Биржа",
-      command: "⚖️Биржа"
+      title: "📊Биржа",
+      command: "📊Биржа"
     }
   ]
 
