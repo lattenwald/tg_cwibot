@@ -49,7 +49,6 @@ defmodule TgCwibot.Client do
 
   defp client() do
     Application.get_env(:tg_cwibot, :token)
-    |> IO.inspect()
     |> client()
   end
 

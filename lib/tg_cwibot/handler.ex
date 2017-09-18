@@ -200,8 +200,6 @@ defmodule TgCwibot.Handler do
     inlineQuery(conn)
   end
 
-  # %{"callback_query" => %{"chat_instance" => "7880232649599250123", "data" => "plus", "from" => %{"first_name" => "Alexander", "id" => 122247178, "is_bot" => false, "language_code" => "en-RU", "username" => "lattenwald"}, "id" => "525047632702103742", "inline_message_id" => "AgAAACEBAAA_YbK8X6hiBfdPmEg"}, "update_id" => 299662902}
-
   defp query(conn = %{body_params: %{"callback_query" => _}}) do
     callbackQuery(conn)
   end
@@ -218,7 +216,7 @@ defmodule TgCwibot.Handler do
     Logger.debug("query: #{query}")
     result = %{"inline_query_id" => id,
                "results" => results(query)}
-    answerInlineQuery(result)
+    TgCwibot.Client.answerInlineQuery(result)
     conn
   end
 
@@ -227,7 +225,7 @@ defmodule TgCwibot.Handler do
       conn.body_params
     Logger.debug("callback query: #{data}")
     result = %{callback_query_id: id, text: "clicked: #{data}"}
-    answerCallbackQuery(result)
+    TgCwibot.Client.answerCallbackQuery(result)
     conn
   end
 
@@ -279,20 +277,6 @@ defmodule TgCwibot.Handler do
         "input_message_content" => %{"message_text" => f.command}}
       |> set_buttons(f[:buttons])
     end)
-    |> IO.inspect
-  end
-
-
-  defp answerInlineQuery(result) do
-    result
-    |> IO.inspect
-    |> TgCwibot.Client.answerInlineQuery
-  end
-
-  defp answerCallbackQuery(result) do
-    result
-    |> IO.inspect
-    |> TgCwibot.Client.answerCallbackQuery
   end
 
 end
