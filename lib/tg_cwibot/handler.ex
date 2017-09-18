@@ -202,7 +202,7 @@ defmodule TgCwibot.Handler do
 
   # %{"callback_query" => %{"chat_instance" => "7880232649599250123", "data" => "plus", "from" => %{"first_name" => "Alexander", "id" => 122247178, "is_bot" => false, "language_code" => "en-RU", "username" => "lattenwald"}, "id" => "525047632702103742", "inline_message_id" => "AgAAACEBAAA_YbK8X6hiBfdPmEg"}, "update_id" => 299662902}
 
-  defp query(conn = %{body_params: _}) do
+  defp query(conn = %{body_params: %{"callback_query" => _}}) do
     callbackQuery(conn)
   end
 
@@ -228,6 +228,7 @@ defmodule TgCwibot.Handler do
     Logger.debug("callback query: #{data}")
     result = %{callback_query_id: id, text: "clicked: #{data}"}
     answerCallbackQuery(result)
+    conn
   end
 
 
