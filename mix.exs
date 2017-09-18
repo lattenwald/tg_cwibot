@@ -33,11 +33,11 @@ defmodule TgCwibot.Mixfile do
   defp deps do
     [
       {:edeliver, "~> 1.4"},
-      {:distillery, "~> 1.2"},
-      {:tesla, "~> 0.6.0"},
+      {:distillery, "~> 1.5"},
+      {:tesla, "~> 0.8.0"},
       {:cowboy, "~> 1.1"},
-      {:hackney, "~> 1.6"},
-      {:plug, "~> 1.3"},
+      {:hackney, "~> 1.9"},
+      {:plug, "~> 1.4"},
       {:poison, "~> 3.1"}
     ]
   end
