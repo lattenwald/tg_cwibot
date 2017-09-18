@@ -22,6 +22,12 @@ defmodule TgCwibot.Client do
 
   def answerInlineQuery(result), do: answerInlineQuery(client(), result)
 
+  def answerCallbackQuery(c, result) do
+    post(c, "/answerCallbackQuery", result)
+  end
+
+  def answerCallbackQuery(result), do: answerCallbackQuery(client(), result)
+
   def setWebHook(c, url) do
     Logger.debug("client: #{inspect c}")
     post(c, "/setWebhook", %{"url" => url})

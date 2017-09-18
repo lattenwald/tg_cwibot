@@ -144,7 +144,15 @@ defmodule TgCwibot.Handler do
       strings: ["биржа", "market"],
       title: "📊Биржа",
       command: "📊Биржа"
-    }
+    },
+    %{
+      default: false,
+      id: "21",
+      strings: ["+", "plus", "test"],
+      title: "➕ testing",
+      command: "➕ testing",
+      buttons: ["➕"]
+    },
   ]
 
   plug Plug.Logger
@@ -188,11 +196,16 @@ defmodule TgCwibot.Handler do
 
   match _, do: Plug.Conn.send_resp(conn, 404, "oops")
 
-  defp query(
-    conn = %{body_params: %{"inline_query" => _}}
-  ) do
+  defp query(conn = %{body_params: %{"inline_query" => _}}) do
     inlineQuery(conn)
   end
+
+  # %{"callback_query" => %{"chat_instance" => "7880232649599250123", "data" => "plus", "from" => %{"first_name" => "Alexander", "id" => 122247178, "is_bot" => false, "language_code" => "en-RU", "username" => "lattenwald"}, "id" => "525047632702103742", "inline_message_id" => "AgAAACEBAAA_YbK8X6hiBfdPmEg"}, "update_id" => 299662902}
+
+  defp query(conn = %{body_params: _}) do
+    callbackQuery(conn)
+  end
+
 
   defp query(conn) do
     Logger.debug("Ignoring message #{inspect conn.body_params}")
@@ -208,6 +221,15 @@ defmodule TgCwibot.Handler do
     answerInlineQuery(result)
     conn
   end
+
+  defp callbackQuery(conn) do
+    %{"callback_query" => %{"data" => data, "id" => id}} =
+      conn.body_params
+    Logger.debug("callback query: #{data}")
+    result = %{callback_query_id: id, text: "clicked: #{data}"}
+    answerCallbackQuery(result)
+  end
+
 
   defp respond(conn) do
     conn
@@ -236,6 +258,14 @@ defmodule TgCwibot.Handler do
     |> formatResults
   end
 
+  defp set_buttons(map, nil), do: map
+  defp set_buttons(map, buttons) do
+    Map.put(map, "reply_markup", %{"inline_keyboard" => [
+                                    Enum.map(buttons, & %{"text" => &1, "callback_data" => &1})
+                                  ]})
+  end
+
+
   defp formatResults(results) do
     results
     |> Enum.map(fn f ->
@@ -246,12 +276,22 @@ defmodule TgCwibot.Handler do
         "thumb_width" => 0,
         "thumb_height" => 0,
         "input_message_content" => %{"message_text" => f.command}}
+      |> set_buttons(f[:buttons])
     end)
+    |> IO.inspect
   end
 
 
   defp answerInlineQuery(result) do
-    TgCwibot.Client.answerInlineQuery(result)
+    result
+    |> IO.inspect
+    |> TgCwibot.Client.answerInlineQuery
+  end
+
+  defp answerCallbackQuery(result) do
+    result
+    |> IO.inspect
+    |> TgCwibot.Client.answerCallbackQuery
   end
 
 end
