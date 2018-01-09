@@ -3,7 +3,7 @@ defmodule TgCwibot.Mixfile do
 
   def project do
     [app: :tg_cwibot,
-     version: "0.1.7",
+     version: "0.1.8",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -34,9 +34,9 @@ defmodule TgCwibot.Mixfile do
     [
       {:edeliver, "~> 1.4"},
       {:distillery, "~> 1.5"},
-      {:tesla, "~> 0.8.0"},
+      {:tesla, "~> 0.10.0"},
       {:cowboy, "~> 1.1"},
-      {:hackney, "~> 1.9"},
+      {:hackney, "~> 1.10"},
       {:plug, "~> 1.4"},
       {:poison, "~> 3.1"}
     ]
